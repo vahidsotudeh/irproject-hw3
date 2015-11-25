@@ -20,6 +20,8 @@ public abstract class CommonUI {
     public abstract ArrayList<String> getURLListByBodySearch(String query);
 
     // this function return list of URLs by search in body of the news and Date filter on News
+    public abstract void addToFavorite(String userID, String NewsURL);
+    public abstract ArrayList<String> getTopRelatedNews(String userID);
     public abstract ArrayList<String> getURLListByBodySearchAndDateRange(String query, Date start, Date end);
     public abstract Map<String,String> getallsetting(String q);
     public abstract String getURLByCommentID(String q);
