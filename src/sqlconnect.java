@@ -28,7 +28,6 @@ public class sqlconnect {
         Class.forName("com.mysql.jdbc.Driver");
 
         //STEP 3: Open a connection
-        System.out.println("Connecting to database...");
         conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
         //STEP 4: Execute a query
@@ -45,6 +44,9 @@ public class sqlconnect {
 
 
     public void addToFavorite(String userID, String newsURL){
+        String sql1 = "SELECT ";
+
+
         String sql = "INSERT INTO "+ tableName
                 + " VALUES("+userID + ", "+ newsURL + ");" ;
         try {
