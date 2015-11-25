@@ -239,6 +239,16 @@ public class Indexer extends CommonUI {
     }
 
     @Override
+    public void addToFavorite(String userID, String NewsURL) {
+
+    }
+
+    @Override
+    public ArrayList<String> getTopRelatedNews(String userID) {
+        return null;
+    }
+
+    @Override
     public ArrayList<String> getURLListByBodySearchAndDateRange(String q, Date start, Date end) {
         try {
             ArrayList<String> urls = new ArrayList<>();
