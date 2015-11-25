@@ -1,0 +1,16 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="ir_name">
+    <output-path>$PROJECT_DIR$/out/artifacts/ir_name</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="irproject" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lucene-analyzers-common-5.3.1" />
+          <element id="library" level="project" name="poi-3.13-20150929" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
