@@ -18,6 +18,8 @@ import java.util.*;
 /**
  * Created by Taghizadeh on 10/30/2015.
  */
+
+
 public class Indexer extends CommonUI {
     @Override
     public void cleanIndex() {
@@ -406,6 +408,16 @@ public class Indexer extends CommonUI {
         }
 
 
+        return null;
+    }
+
+    @Override
+    public void addToFavorite(String userID, String NewsURL) {
+
+    }
+
+    @Override
+    public ArrayList<String> getTopRelatedNews(String userID) {
         return null;
     }
 
