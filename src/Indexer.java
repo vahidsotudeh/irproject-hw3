@@ -21,6 +21,12 @@ import java.util.*;
 
 
 public class Indexer extends CommonUI {
+    sqlconnect sqlconnect;
+
+
+    public Indexer(){
+        sqlconnect = new sqlconnect();
+    }
     @Override
     public void cleanIndex() {
         new File("index").delete();
@@ -407,18 +413,17 @@ public class Indexer extends CommonUI {
 
         }
 
-
         return null;
     }
 
     @Override
     public void addToFavorite(String userID, String NewsURL) {
-
+        sqlconnect.addToFavorite(userID, NewsURL);
     }
 
     @Override
     public ArrayList<String> getTopRelatedNews(String userID) {
-        return null;
+        return sqlconnect.getUserURLs(userID);
     }
 
     public ArrayList<String> intersection( List<String> list1, List<String> list2, List<String> list3, List<String> list4) {

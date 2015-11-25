@@ -15,6 +15,12 @@ public class sqlconnect {
     static final String USER = "root";
     static final String PASS = "";
 
+    String tableName = "user_url";
+    String userIDColumn = "userID";
+    String urlColumn = "url";
+    Connection conn = null;
+    Statement stmt = null;
+
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
         Connection conn = null;
         Statement stmt = null;
@@ -36,11 +42,7 @@ public class sqlconnect {
 
         }
     }
-    String tableName = "user_url";
-    String userIDColumn = "userID";
-    String urlColumn = "url";
-    Connection conn = null;
-    Statement stmt = null;
+
 
     public void addToFavorite(String userID, String newsURL){
         String sql = "INSERT INTO "+ tableName
