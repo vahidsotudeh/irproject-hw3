@@ -15,7 +15,7 @@ public class sqlconnect {
     static final String USER = "root";
     static final String PASS = "";
 
-    String tableName = "user_url";
+    String tableName = "userUrl";
     String userIDColumn = "userID";
     String urlColumn = "url";
     Connection conn = null;
@@ -34,7 +34,7 @@ public class sqlconnect {
         System.out.println("Creating statement...");
         stmt = conn.createStatement();
         String sql;
-        sql = "CREATE  TABLE use_url (Userid VARCHAR(50) ,NewsUrl VARCHAR (50), PRIMARY KEY (Userid)); ";
+        sql = "CREATE  TABLE userUrl (Userid VARCHAR(50) ,NewsUrl VARCHAR (50),Count INT , PRIMARY KEY (Userid,NewsUrl)); ";
         try {
             stmt.executeUpdate(sql);
         } catch (MySQLSyntaxErrorException e) {
@@ -43,17 +43,26 @@ public class sqlconnect {
     }
 
 
-    public void addToFavorite(String userID, String newsURL){
+    public void addToFavorite(String userID, String newsURL) throws SQLException {
         String sql1 = "SELECT ";
 
-
+        int counter=0;
         String sql = "INSERT INTO "+ tableName
-                + " VALUES("+userID + ", "+ newsURL + ");" ;
+                + " VALUES("+userID + ", "+ newsURL + " , "+counter +");" ;
         try {
             stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
 
         } catch (SQLException e) {
+            String sql2 = "SELECT  Count "
+                    + " FROM " + tableName
+                    + " WHERE " + userIDColumn +" = " + userID + "AND  NewsUrl=" + newsURL +" ;";
+                ArrayList<String> urls = new ArrayList<>();
+                ResultSet rs1 = stmt.executeQuery(sql2);
+                rs1.getInt(counter);
+                String update="UPDATE userUrl " + "SET Count="+counter+ " WHERE  " + userIDColumn +" = " + userID + " and  NewsUrl=" + newsURL +" ;";
+
+
             e.printStackTrace();
         }
     }
