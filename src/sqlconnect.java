@@ -34,7 +34,7 @@ public class sqlconnect {
         System.out.println("Creating statement...");
         stmt = conn.createStatement();
         String sql;
-        sql = "CREATE  TABLE userUrl (Userid VARCHAR(50) ,NewsUrl VARCHAR (50),Count INT , PRIMARY KEY (Userid,NewsUrl)); ";
+        sql = "CREATE  TABLE userUrl (Userid VARCHAR(50) ,NewsUrl VARCHAR (50),Counter INT , PRIMARY KEY (Userid,NewsUrl)); ";
         try {
             stmt.executeUpdate(sql);
         } catch (MySQLSyntaxErrorException e) {
@@ -54,13 +54,14 @@ public class sqlconnect {
             ResultSet rs = stmt.executeQuery(sql);
 
         } catch (SQLException e) {
-            String sql2 = "SELECT  Count "
+            String sql2 = "SELECT  Counter "
                     + " FROM " + tableName
                     + " WHERE " + userIDColumn +" = " + userID + "AND  NewsUrl=" + newsURL +" ;";
                 ArrayList<String> urls = new ArrayList<>();
                 ResultSet rs1 = stmt.executeQuery(sql2);
                 rs1.getInt(counter);
-                String update="UPDATE userUrl " + "SET Count="+counter+ " WHERE  " + userIDColumn +" = " + userID + " and  NewsUrl=" + newsURL +" ;";
+                counter++;
+                String update="UPDATE userUrl " + "SET Counter="+counter+ " WHERE  " + userIDColumn +" = " + userID + " and  NewsUrl=" + newsURL +" ;";
 
 
             e.printStackTrace();
@@ -69,7 +70,7 @@ public class sqlconnect {
     public ArrayList<String> getUserURLs(String userID){
         String sql = "SELECT "+ urlColumn
                 + " FROM " + tableName
-                + "WHERE " + userIDColumn +" = " + userID + ");";
+                + "WHERE " + userIDColumn +" = " + userID + " order by Counter DESC );";
         ArrayList<String> urls = new ArrayList<>();
         try {
             stmt = conn.createStatement();
@@ -83,6 +84,7 @@ public class sqlconnect {
             e.printStackTrace();
         }
 
-        return urls;
+        ArrayList<String> tops=new ArrayList<>(urls.subList(0,10));
+        return tops;
     }
 }

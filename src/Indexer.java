@@ -13,6 +13,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.sql.SQLException;
 import java.util.*;
 
 /**
@@ -418,7 +419,11 @@ public class Indexer extends CommonUI {
 
     @Override
     public void addToFavorite(String userID, String NewsURL) {
-        sqlconnect.addToFavorite(userID, NewsURL);
+        try {
+            sqlconnect.addToFavorite(userID, NewsURL);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
